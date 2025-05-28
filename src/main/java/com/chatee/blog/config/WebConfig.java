@@ -16,7 +16,8 @@ public class WebConfig {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:3000",
-                                "https://ambitious-stone-09e5f130f.6.azurestaticapps.net"
+                                "https://ambitious-stone-09e5f130f.6.azurestaticapps.net",
+                                "https://ashy-beach-077b6170f.6.azurestaticapps.net"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
