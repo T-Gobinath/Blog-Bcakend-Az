@@ -58,6 +58,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'chatee-new'
+          # FIXED: The app-name now correctly points to your Azure Web App.
+          app-name: 'chateepost-new'
           slot-name: 'Production'
           package: '*.jar'
