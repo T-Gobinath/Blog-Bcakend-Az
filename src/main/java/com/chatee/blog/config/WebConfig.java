@@ -17,6 +17,7 @@ public class WebConfig {
                         .allowedOrigins(
                                 "http://localhost:3000",
 
+
                                 "https://gray-tree-04632fc0f.2.azurestaticapps.net"
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
