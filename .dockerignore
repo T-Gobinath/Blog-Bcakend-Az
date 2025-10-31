@@ -1,0 +1,4 @@
+# Ignore files and folders not needed in the build
+.git
+.idea
+target
