@@ -15,9 +15,9 @@ public class Post {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String content;
+@Column(nullable = false, columnDefinition = "TEXT")
+private String content;
 
-    @Column(nullable = false)
-    private String username; // The user who posted
+@Column(nullable = false)
+private String username; // The user who posted
 }

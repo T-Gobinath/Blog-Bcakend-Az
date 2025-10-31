@@ -1,0 +1,10 @@
+# Created at 2025-10-31T12:14:38.324
+Boot Manifest-JAR contains absolute paths in classpath 'H:\New folder\Blog-Bcakend-Az\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
+# Created at 2025-10-31T12:14:38.326
+Boot Manifest-JAR contains absolute paths in classpath 'H:\New folder\Blog-Bcakend-Az\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
