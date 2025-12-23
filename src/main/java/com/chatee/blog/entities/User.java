@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "user1")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -16,14 +16,22 @@ public class User {
     private String username;
 
     @Column(nullable = false)
-    private String password;
+    private String password; // Will be hashed
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
-    private Long mobile;
+    private String mobile;
 
-    @Column
+    // --- NEW FIELDS FOR VERIFICATION ---
+
+    @Column(nullable = false, unique = true)
+    private String email; // Separate email field is better than using username
+
     private String role;
+
+    @Column(name = "verification_code")
+    private String verificationCode;
+
+    private boolean enabled = false; // User cannot login until this is true
 }
