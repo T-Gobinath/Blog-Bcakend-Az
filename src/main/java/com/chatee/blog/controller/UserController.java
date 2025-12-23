@@ -4,17 +4,17 @@ import com.chatee.blog.dto.LoginRequest;
 import com.chatee.blog.dto.ApiResponse;
 import com.chatee.blog.entities.User;
 import com.chatee.blog.service.UserService;
-import com.chatee.blog.service.EmailService; // ✅ 1. Import EmailService
+import com.chatee.blog.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; // ✅ Security Import
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Random; // ✅ Import Random for OTP
+import java.util.Random;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin("*")  // <--- 🚨 CHANGED THIS LINE (Allows AWS S3 to connect)
 @RequestMapping("/api")
 public class UserController {
 
@@ -22,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private EmailService emailService; // ✅ 2. Inject EmailService
+    private EmailService emailService;
 
     // Security: Encrypt passwords so they aren't plain text
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -74,18 +74,18 @@ public class UserController {
                         .body(new ApiResponse("Username already exists", null));
             }
 
-            // ✅ 3. Generate 6-Digit OTP
+            // Generate 6-Digit OTP
             String otp = String.valueOf(new Random().nextInt(900000) + 100000);
             user.setVerificationCode(otp);
             user.setEnabled(false); // User is locked until they verify
 
-            // ✅ 4. Hash the password (Security)
+            // Hash the password (Security)
             user.setPassword(passwordEncoder.encode(user.getPassword()));
 
             // Save to Database
             User savedUser = userService.saveUser(user);
 
-            // ✅ 5. SEND EMAIL
+            // SEND EMAIL
             System.out.println("Sending OTP to: " + user.getEmail()); // Debug print
             emailService.sendVerificationEmail(user.getEmail(), otp);
 
@@ -116,7 +116,7 @@ public class UserController {
 
             // Check if the OTP matches
             if (user.getVerificationCode().equals(request.getPassword())) {
-                user.setEnabled(true); // ✅ Activate Account
+                user.setEnabled(true); // Activate Account
                 user.setVerificationCode(null); // Clear OTP
                 userService.saveUser(user);
 

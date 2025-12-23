@@ -16,13 +16,12 @@ public class WebConfig {
                 registry.addMapping("/**")
                         .allowedOrigins(
                                 "http://localhost:3000",
-
-
-                                "https://chateeapp.netlify.app/"
+                                "https://chateeapp.netlify.app/",
+                                "http://chatee-app.s3-website.eu-north-1.amazonaws.com" // ✅ Added your AWS S3 link here
                         )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowCredentials(true); // Important if sending cookies or auth headers
+                        .allowCredentials(true);
             }
         };
     }
